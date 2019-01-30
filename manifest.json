@@ -1,0 +1,19 @@
+{
+
+    "manifest_version": 2,
+    "name": "getmeQR",
+    "version": "1.0",
+
+    "description": "getmeQR is an easy to use google chrome extension to generate QR code on the fly",
+    "icons": {},
+
+    "browser_action": {
+        "default_popup": "main.html"
+    },
+
+    "options_page":"extensionOptions.html",
+    "permissions": [
+        "tabs",
+        "contextMenus"
+      ]
+}
