@@ -1,10 +1,12 @@
-// new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
 
 
 let btn1=$("#currentQRbtn")
-let btn2=$("#allQRbtn")
-let btn3=$("#allETQRbtn")
+let btn2=$("#allETQRbtn")
+let btn3=$("#allQRbtn")
+let QRcvs=$("#qrcode")
+let API_URL="https://api.qrserver.com/v1/create-qr-code/"
 let ALL_OPEN_URLS=[]
+let qrSize;
 
 chrome.tabs.query({'active':true},function(currentTab){
     ALL_OPEN_URLS.push(currentTab[0].url) 
@@ -21,12 +23,42 @@ function pushOtherTabs(){
 }
 
 btn1.click(()=>{
-    console.log("clicked on 1")
-    new QRCode(document.getElementById("qrcode"), ALL_OPEN_URLS[0]);
+    QRcvs.empty()
+
+    let data=ALL_OPEN_URLS[0]
+    let qrSize=150
+    QRcvs.append(`
+        <img src="${API_URL}?size=${qrSize}x${qrSize}&data=${data}" alt="QR-code">
+    `)
 })
 
-// btn1.click(()=>{
-//     console.log("clicked on 1")
-//     new QRCode(document.getElementById("qrcode"), ALL_OPEN_URLS[0]);
-// })
+btn2.click(()=>{
+    QRcvs.empty()
+    
+    let URLString="";
+    ALL_OPEN_URLS.forEach((element,i) => {
+        if(i)
+        URLString=URLString+i+". "+element+"\n"
+    });
+    
+    let data=URLString
+    let qrSize=150
+    QRcvs.append(`
+        <img src="${API_URL}?size=${qrSize}x${qrSize}&data=${data}" alt="QR-code">
+    `)
+})
 
+btn3.click(()=>{
+    QRcvs.empty()
+    
+    let URLString="";
+    ALL_OPEN_URLS.forEach((element,i) => {
+        URLString=URLString+i+". "+element+"\n"
+    });    
+    
+    let data=URLString
+    let qrSize=150
+    QRcvs.append(`
+        <img src="${API_URL}?size=${qrSize}x${qrSize}&data=${data}" alt="QR-code">
+    `)
+})

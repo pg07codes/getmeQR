@@ -13,6 +13,7 @@
 
     "options_page":"extensionOptions.html",
     "permissions": [
+        "https://api.qrserver.com/v1/create-qr-code/",
         "tabs",
         "contextMenus"
       ]

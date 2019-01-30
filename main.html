@@ -9,7 +9,7 @@
     <title>getmeQR </title>
   </head>
   <body>
-      <div class="container">
+      <div class="container-fluid">
         <div class="row justify-content-center mt-1 mb-1">
             <div class="col-10 text-center">
                 <button id="currentQRbtn" class="btn btn-success btn-sm">QR for current tab</button>
@@ -30,9 +30,8 @@
         </div>
 
 
-        <div class="row justify-content-center  mt-1 mb-1">
+        <div id="qrcode"class="row justify-content-center  mt-3 mb-2">
             
-            <div id="qrcode" class="col-10 text-center"></div>
         </div>
 
       </div>
@@ -41,7 +40,6 @@
     
 
 
-    <script src="/static/qrcode.min.js"></script>
     <script src="/static/jquery.min.js" ></script>
     <script src="/static/popper.min.js" ></script>
     <script src="/static/bootstrap.min.js" ></script>
