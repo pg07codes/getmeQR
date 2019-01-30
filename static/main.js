@@ -26,9 +26,9 @@ btn1.click(()=>{
     QRcvs.empty()
 
     let data=ALL_OPEN_URLS[0]
-    let qrSize=150
+    let qrSize=data.length<=90?150:(data.length<=150?220:280)
     QRcvs.append(`
-        <img src="${API_URL}?size=${qrSize}x${qrSize}&data=${data}" alt="QR-code">
+        <img id="qr" src="${API_URL}?size=${qrSize}x${qrSize}&data='${data}'" alt="QR-code">
     `)
 })
 
@@ -38,13 +38,13 @@ btn2.click(()=>{
     let URLString="";
     ALL_OPEN_URLS.forEach((element,i) => {
         if(i)
-        URLString=URLString+i+". "+element+"\n"
+        URLString=URLString+i+".) "+element+" "
     });
     
     let data=URLString
-    let qrSize=150
+    let qrSize=data.length<=90?150:(data.length<=150?220:280)    
     QRcvs.append(`
-        <img src="${API_URL}?size=${qrSize}x${qrSize}&data=${data}" alt="QR-code">
+        <img id="qr" src="${API_URL}?size=${qrSize}x${qrSize}&data='${data}'" alt="QR-code">
     `)
 })
 
@@ -53,12 +53,12 @@ btn3.click(()=>{
     
     let URLString="";
     ALL_OPEN_URLS.forEach((element,i) => {
-        URLString=URLString+i+". "+element+"\n"
+        URLString=URLString+i+".) "+element+" "
     });    
     
     let data=URLString
-    let qrSize=150
+    let qrSize=data.length<=90?150:(data.length<=150?220:280)
     QRcvs.append(`
-        <img src="${API_URL}?size=${qrSize}x${qrSize}&data=${data}" alt="QR-code">
+        <img id="qr" src="${API_URL}?size=${qrSize}x${qrSize}&data='${data}'" alt="QR-code">
     `)
 })

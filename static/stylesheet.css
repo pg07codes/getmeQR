@@ -1,7 +1,11 @@
 body,html{
     margin:5px;
     padding:0;
-    width:370px;
+    width:320px;
     height:270px;
     background-color: #2e3035
+}
+
+#qr{
+    padding:5px;
 }
