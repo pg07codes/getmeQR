@@ -23,13 +23,13 @@ function validateURL(str) {
     }
 }
 
-chrome.tabs.query({'active':true},function(currentTab){
+chrome.tabs.query({'active':true, lastFocusedWindow: true},function(currentTab){
     ALL_OPEN_URLS.push(currentTab[0].url) 
     pushOtherTabs();   
 })
 
 function pushOtherTabs(){
-    chrome.tabs.query({'active':false},function(tabs){
+    chrome.tabs.query({'active':false, lastFocusedWindow: true},function(tabs){
         tabs.forEach(element => {
             ALL_OPEN_URLS.push(element.url)
         })
@@ -38,7 +38,7 @@ function pushOtherTabs(){
 }
 btn0.click(()=>{
     QRcvs.empty()
-    let data=$("#url").val()
+    let data=encodeURIComponent($("#url").val())
     if(data.length!==0 &&  validateURL(data) ){
         let qrSize=data.length<=90?150:(data.length<=150?220:280)
         
@@ -52,7 +52,7 @@ btn0.click(()=>{
 btn1.click(()=>{
     QRcvs.empty()
 
-    let data=ALL_OPEN_URLS[0]
+    let data=encodeURIComponent(ALL_OPEN_URLS[0])
     let qrSize=data.length<=90?150:(data.length<=150?220:280)
     QRcvs.append(`
         <img id="qr" src="${API_URL}?size=${qrSize}x${qrSize}&data='${data}'" alt="QR-code">
@@ -68,7 +68,7 @@ btn2.click(()=>{
         URLString=URLString+i+".) "+element+" "
     });
     
-    let data=URLString
+    let data=encodeURIComponent(URLString)
     let qrSize=data.length<=90?150:(data.length<=150?220:280)    
     QRcvs.append(`
         <img id="qr" src="${API_URL}?size=${qrSize}x${qrSize}&data='${data}'" alt="QR-code">
@@ -83,7 +83,7 @@ btn3.click(()=>{
         URLString=URLString+i+".) "+element+" "
     });    
     
-    let data=URLString
+    let data=encodeURIComponent(URLString)
     let qrSize=data.length<=90?150:(data.length<=150?220:280)
     QRcvs.append(`
         <img id="qr" src="${API_URL}?size=${qrSize}x${qrSize}&data='${data}'" alt="QR-code">
