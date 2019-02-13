@@ -39,7 +39,7 @@ function pushOtherTabs(){
 btn0.click(()=>{
     QRcvs.empty()
     let data=encodeURIComponent($("#url").val())
-    if(data.length!==0 &&  validateURL(data) ){
+    if(data.length!==0){
         let qrSize=data.length<=90?150:(data.length<=150?220:280)
         
         QRcvs.append(`
